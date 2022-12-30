@@ -1,0 +1,32 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('https://cdn.dribbble.com/users/1732368/screenshots/16451791/media/b0bfedea16b66e65de85b4a9397341e0.gif');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #8B8C89;
+}
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        .topnav a:hover {
+            background-color: #6096BA;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #A3CEF1;
+            color: white;
+        }

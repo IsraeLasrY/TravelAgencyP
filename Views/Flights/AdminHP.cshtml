@@ -1,0 +1,119 @@
+﻿@model IEnumerable<TravelAgencyP.Models.FlightsInfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin Home Page</title>
+    <link href="~/Css/AdminCss/AdminPageCss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+   
+
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/Flights/AdminHP">Home Admin</a>
+        <a href="/Flights/AddFlights">Add Flights</a>
+    </div>
+    <p>
+
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                -
+                @Html.DisplayNameFor(model => model.FlightNumber)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirLine)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Terminal)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationFlight)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginFlight)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepDateFlight)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandDateFlight)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seats)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceTicket)
+                -
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+                -
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Terminal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DestinationFlight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OriginFlight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepDateFlight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LandDateFlight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seats)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceTicket)$
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FlightNumber }, new { @class = "myActionLink" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FlightNumber }, new { @class = "myActionLink" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FlightNumber }, new { @class = "myActionLink" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

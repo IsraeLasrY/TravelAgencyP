@@ -1,0 +1,61 @@
+﻿@model TravelAgencyP.Models.AdminInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin Login</title>
+    <link href="~/Css/HomeCss/LoginCss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+</head>
+<body>
+
+
+    <div class="topnav">
+        <a href="/HomeTravel/HomePage">Home</a>
+        <a href="#news">Find Flight</a>
+        <a class="active" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login AdmiN</a>
+        <a href="/HomeTravel/AboutUs">AbouTUs</a>
+    </div>
+
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="Verify" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="~/css/Img/AdminPic.png" alt="Avatar" class="avatar" />
+            </div>
+
+
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="EmailAdmin" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="AdminPassword" required>
+
+                <button type="submit">Login</button>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+
+            </div>
+        </form>
+
+    </div>
+
+
+
+</body>
+</html>

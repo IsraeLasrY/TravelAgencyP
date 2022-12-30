@@ -1,0 +1,128 @@
+﻿@model TravelAgencyP.Models.FlightsInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Delete Flight From DB</title>
+    <link href="~/Css/AdminCss/AdminPageCss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a href="/Flights/AdminHP">HomeAdmin</a>
+        <a href="/Flights/AddFlights">Add Flights</a>
+        <a href="#EditFlight">Edit Flights</a>
+        <a class="active" href="#DeleteFlight">Delete Flights </a>
+    </div>
+    <strong>
+        <div>
+            <h3>Are you sure you want to delete this?</h3>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FlightNumber)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FlightNumber)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.AirLine)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AirLine)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.Terminal)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Terminal)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.DestinationFlight)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DestinationFlight)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.OriginFlight)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OriginFlight)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.DepDateFlight)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DepDateFlight)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.LandDateFlight)
+                </dt>
+                <br />
+                <dd>
+                    @Html.DisplayFor(model => model.LandDateFlight)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.Seats)
+                </dt>
+                <br />
+                <dd>
+                    @Html.DisplayFor(model => model.Seats)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.PriceTicket)
+                </dt>
+                <br />
+                <dd>
+                    @Html.DisplayFor(model => model.PriceTicket)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+                <br />
+                <dd>
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+                <br />
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div>
+            <input type="submit" value="Delete" class="myActionLink" />| 
+            @Html.ActionLink("Back to List", "AdminHP", new { }, new { @class = "myActionLink" })
+        </div>
+                
+              
+            }
+        </div>
+    </strong>
+</body>
+</html>
