@@ -65,6 +65,10 @@ namespace TravelAgencyP.Controllers
 
 
         }
+        public ActionResult FindFlight()
+        {
+            return View("FindFlight");
+        }
 
 
         protected override void Dispose(bool disposing)

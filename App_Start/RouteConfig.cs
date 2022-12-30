@@ -26,6 +26,12 @@ namespace TravelAgencyP
           );
 
             routes.MapRoute(
+                name: "FindFlightPage",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "HomeTravel", action = "FindFlight", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
            name: "LoginAdminPage",
            url: "{controller}/{action}/{id}",
            defaults: new { controller = "HomeTravel", action = "LoginAdmin", id = UrlParameter.Optional }
