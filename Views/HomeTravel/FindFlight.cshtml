@@ -350,33 +350,33 @@
                                         <div class="table-responsive">
                                             <table class="table widget-26">
                                                 <tbody>
-                                                    @foreach (var flight in Model)
+                                                    @foreach (var item in Model)
                                                     {
                                                         //@if (flight.FlightDate) //to check if the obj is equel to the input
                                                             <tr>
                                                                 <td>
 
                                                                     <div class="widget-26-job-emp-img">
-                                                                        <p class="type m-0">@flight.FlightNumber</p>
+                                                                        <p class="type m-0">@Html.DisplayFor(modelItem => item.FlightNumber)</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="widget-26-job-title">
-                                                                        <p class="type m-0">@flight.OriginFlight To @flight.DestinationFlight</p>
+                                                                        <p class="type m-0">@Html.DisplayFor(modelItem => item.OriginFlight) To @Html.DisplayFor(modelItem => item.DestinationFlight)</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="widget-26-job-info">
-                                                                        <p class="type m-0">Time : @flight.DepDateFlight </p>
+                                                                        <p class="type m-0">Time : @Html.DisplayFor(modelItem => item.DepDateFlight)</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="widget-26-job-salary">$ </div>
+                                                                    <div class="widget-26-job-salary">@Html.DisplayFor(modelItem => item.PriceTicket)$ </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="widget-26-job-category bg-soft-base">
                                                                         <i class="indicator bg-base"></i>
-                                                                        <span>@flight.AirLine Terminal - @flight.Terminal</span>
+                                                                        <span>@Html.DisplayFor(modelItem => item.AirLine)- @Html.DisplayFor(modelItem => item.Terminal)</span>
                                                                     </div>
                                                                 </td>
                                                                 <td>

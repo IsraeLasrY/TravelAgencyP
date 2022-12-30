@@ -15,6 +15,8 @@ namespace TravelAgencyP.Controllers
     public class HomeTravelController : Controller
     {
         private FlightDAL db = new FlightDAL();
+        private AdminDAL DB = new AdminDAL();
+
 
         // GET: HomeTravel
         public ActionResult HomePage()
@@ -67,7 +69,8 @@ namespace TravelAgencyP.Controllers
         }
         public ActionResult FindFlight()
         {
-            return View("FindFlight");
+            
+            return View("FindFlight", db.FlightsInfo);
         }
 
 
