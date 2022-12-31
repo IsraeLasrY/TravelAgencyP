@@ -136,6 +136,8 @@
     <Compile Include="Dal\FlightDAL.cs" />
     <Compile Include="Dal\AdminDAL.cs" />
     <Compile Include="Models\AdminInfo.cs" />
+    <Compile Include="Models\CreditCard.cs" />
+    <Compile Include="Dal\CreditCardsDAL.cs" />
     <Compile Include="Models\FlightsInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +178,14 @@
     <Content Include="W3\AddFlights\js\jquery-ui.js" />
     <Content Include="W3\AddFlights\js\jquery.min.js" />
     <Content Include="W3\AddFlights\w3layouts-License.txt" />
+    <Content Include="Css\CreditCardCss\creditly.css" />
+    <Content Include="Css\CreditCardCss\font-awesome.css" />
+    <Content Include="Css\CreditCardCss\style.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Css\Img\3.jpg" />
+    <None Include="Views\HomeTravel\Payment.cshtml" />
+    <Content Include="Scripts\creditly.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -193,10 +203,16 @@
     <Content Include="Views\Flights\Details.cshtml" />
     <Content Include="Views\HomeTravel\LoginAdmin.cshtml" />
     <Content Include="Views\HomeTravel\HomePage.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewModel\" />
+    <Folder Include="Views\HomeTravel\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
