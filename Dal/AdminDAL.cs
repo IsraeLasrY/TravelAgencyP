@@ -9,7 +9,8 @@ namespace TravelAgencyP.Dal
     public partial class AdminDAL : DbContext
     {
         public AdminDAL()
-            : base("data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
+            //: base("data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
+            : base("Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True")
         {
         }
 

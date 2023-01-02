@@ -150,6 +150,7 @@
     <Content Include="Css\HomeCss\Homecss.css" />
     <Content Include="Css\HomeCss\LoginCss.css" />
     <Content Include="Css\Img\AdminPic.png" />
+    <Content Include="Css\SearchCss\SearchFlights.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

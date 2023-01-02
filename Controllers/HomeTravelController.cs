@@ -41,7 +41,9 @@ namespace TravelAgencyP.Controllers
 
         void connectionString()
         {
-            con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            //con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
+
         }
         [HttpPost]
         public ActionResult Verify(AdminInfo adminAcc)
@@ -72,8 +74,26 @@ namespace TravelAgencyP.Controllers
             
             return View("FindFlight", db.FlightsInfo);
         }
+        [HttpPost]
+        public ActionResult SearchFlight()
+        {
+            try
+            {
+                FlightsInfo info = new FlightsInfo();
+                info.OriginFlight = Request.Form["OLocation"];
+                info.DestinationFlight = Request.Form["DLocation"];
+                info.DepDateFlight = Convert.ToDateTime(Request.Form["depdate"]);
+                return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight));
+            }
+            catch (Exception ex)
+            {
+                return View("FindFlight", db.FlightsInfo);
+            }
+        }
         public ActionResult Payment()
         {
+            var tickets = Request.Form["numtickets"];
+
             return View("Payment");
         }
 
