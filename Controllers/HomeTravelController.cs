@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TravelAgencyP.Dal;
 using TravelAgencyP.Models;
 using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace TravelAgencyP.Controllers
 {
@@ -16,7 +17,7 @@ namespace TravelAgencyP.Controllers
     {
         private FlightDAL db = new FlightDAL();
         private AdminDAL DB = new AdminDAL();
-
+        private CreditCardsDAL DbC = new CreditCardsDAL();
 
         // GET: HomeTravel
         public ActionResult HomePage()
@@ -90,15 +91,36 @@ namespace TravelAgencyP.Controllers
                 return View("FindFlight", db.FlightsInfo);
             }
         }
-        public ActionResult Payment()
+        public ActionResult VerifyPayment()
         {
-            var tickets = Request.Form["numtickets"];
-
-            return View("Payment");
+            FlightsInfo fi = (FlightsInfo)Session["flight"];
+            var ti = Session["tickets"];
+            CreditCard creditCard = new CreditCard();
+            creditCard.CardNumber = Request.Form["number"];
+            creditCard.NameOnCard = Request.Form["name"];
+            creditCard.ExpirationDate =Convert.ToDateTime( "01/"+Request.Form["expiration-month-and-year"]);
+            DbC.CreditCard.Add(creditCard);
+            db.FlightsInfo.Find(fi.FlightNumber).Seats = Convert.ToInt32(fi.Seats) - Convert.ToInt32(ti);
+            db.SaveChanges();
+            DbC.SaveChanges();
+            return View("HomePage",db.FlightsInfo);
         }
+       
 
         public ActionResult LoginForPayment()
         {
+            FlightsInfo fi = new FlightsInfo();
+            var tickets = Request.Form["numtickets"];
+            fi.FlightNumber = Request.Form["FlightNum"];
+            if ((Convert.ToInt32(db.FlightsInfo.Find(fi.FlightNumber).Seats.Value) - Convert.ToInt32(tickets)) < 0)
+            {
+                Response.Write("<script>alert('There are not enough seats left on the flight, choose a smaller amount or another flight');</script>");
+                return View("FindFlight",db.FlightsInfo);
+            }
+            fi.Seats = db.FlightsInfo.Find(fi.FlightNumber).Seats.Value;
+            fi.PriceTicket = Convert.ToInt32(db.FlightsInfo.Find(fi.FlightNumber).PriceTicket)*Convert.ToInt32(tickets);
+            Session["flight"] = fi;
+            Session["tickets"] = tickets;
             return View();
         }
 
@@ -116,6 +138,8 @@ namespace TravelAgencyP.Controllers
             if (dr.Read())
             {
                 con.Close();
+                FlightsInfo fi = (FlightsInfo)Session["flight"];
+                ViewData["price"] = fi.PriceTicket;
                 return View("Payment");
             }
             else

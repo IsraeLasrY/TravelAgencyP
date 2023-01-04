@@ -35,9 +35,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<label class="nl-label" for="nl-radio-1">Payment Card</label>
 				<div class="nl-content">
 					<div class="agileits_w3layouts_tab1 agileits_w3layouts_tab">
-					<form action="#" method="post" class="creditly-card-form agileinfo_form">
+					<form action="VerifyPayment" method="post" class="creditly-card-form agileinfo_form">
 						<section class="creditly-wrapper wthree w3_agileits_wrapper">
 								<div class="first-row form-group">
+                                    <div>
+										@{ 
+                                            var price = ViewData["price"];
+										}
+                                        <label class="control-label">For payment : @price $</label>
+                                    </div>
 									<div class="controls">
 										<label class="control-label">Name on Card</label>
 										<input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith" required="">

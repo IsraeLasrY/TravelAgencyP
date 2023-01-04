@@ -603,12 +603,13 @@
                                                 <tbody>
                                                     @foreach (var item in Model)
                                                     {
-                                                      <form id="Payment-form" action="LoginForPayment" method="post">
+                                                        
+                                                        <form id="Payment-form" action="LoginForPayment" method="post">
                                                         <tr>
                                                             <td>
-
+                                                                <input type="hidden" name="FlightNum" value=@Html.ValueForModel(item.FlightNumber) />
                                                                 <div class="widget-26-job-emp-img">
-                                                                    <p class="type m-0">@Html.DisplayFor(modelItem => item.FlightNumber)</p>
+                                                                    <p class="type m-0" >@Html.DisplayFor(modelItem => item.FlightNumber)</p>
                                                                 </div>
                                                             </td>
                                                             <td>
@@ -633,7 +634,7 @@
                                                             <td>
                                                                 <div>
                                                                     <input type="number" id="numtickets" name="numtickets"
-                                                                           min="1" >
+                                                                           min="1">
                                                                 </div>
                                                             </td>
                                                             <td>
@@ -642,7 +643,8 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                       </form>
+                                                       
+                                                        </form>
                                                     }
                                                 </tbody>
                                             </table>

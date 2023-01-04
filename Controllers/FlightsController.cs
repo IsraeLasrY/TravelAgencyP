@@ -60,6 +60,8 @@ namespace TravelAgencyP.Controllers
             return View(flightsInfo);
         }
 
+
+
         // GET: Flights/Edit/5
         public ActionResult Edit(string id)
         {
