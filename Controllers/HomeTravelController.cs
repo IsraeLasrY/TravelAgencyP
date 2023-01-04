@@ -41,8 +41,8 @@ namespace TravelAgencyP.Controllers
 
         void connectionString()
         {
-            //con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
-            con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
+            con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            //con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
 
         }
         [HttpPost]
@@ -97,6 +97,33 @@ namespace TravelAgencyP.Controllers
             return View("Payment");
         }
 
+        public ActionResult LoginForPayment()
+        {
+            return View();
+        }
+
+        public ActionResult VerifyUser(UserInfo userInfo)
+        {
+            UserInfo User = new UserInfo();
+            User.ID = Request.Form["ID"];
+            User.UserEmail = Request.Form["UserEmail"];
+            User.UserPassword = Request.Form["UserPassword"];
+            connectionString();
+            con.Open();
+            com.Connection = con;
+            com.CommandText = "select * from UserInfo where ID = '" + userInfo.ID + "' and UserEmail = '" + userInfo.UserEmail + "' and UserPassword= '" + userInfo.UserPassword + "'";
+            dr = com.ExecuteReader();
+            if (dr.Read())
+            {
+                con.Close();
+                return View("Payment");
+            }
+            else
+            {
+                con.Close();
+                return View("LoginForPayment");
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

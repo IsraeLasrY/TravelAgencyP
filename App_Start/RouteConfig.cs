@@ -50,6 +50,18 @@ namespace TravelAgencyP
           );
 
             routes.MapRoute(
+         name: "LoginForPaymentPage",
+         url: "{controller}/{action}/{id}",
+         defaults: new { controller = "HomeTravel", action = "LoginForPayment", id = UrlParameter.Optional }
+         );
+
+            routes.MapRoute(
+          name: "VerifyUserPage",
+          url: "{controller}/{action}/{id}",
+          defaults: new { controller = "HomeTravel", action = "VerifyUser", id = UrlParameter.Optional }
+          );
+
+            routes.MapRoute(
                name: "AdminHomeP",
                url: "{controller}/{action}/{id}",
                defaults: new { controller = "Flights", action = "AdminHP", id = UrlParameter.Optional }

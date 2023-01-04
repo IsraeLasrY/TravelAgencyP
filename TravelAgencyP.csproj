@@ -139,9 +139,15 @@
     <Compile Include="Models\CreditCard.cs" />
     <Compile Include="Dal\CreditCardsDAL.cs" />
     <Compile Include="Models\FlightsInfo.cs" />
+    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Dal\UserLoginDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ProjectDB.mdf" />
+    <Content Include="App_Data\ProjectDB_log.ldf">
+      <DependentUpon>ProjectDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -150,6 +156,7 @@
     <Content Include="Css\HomeCss\Homecss.css" />
     <Content Include="Css\HomeCss\LoginCss.css" />
     <Content Include="Css\Img\AdminPic.png" />
+    <Content Include="Css\Img\Jetliner-Airplane-Flying.jpg" />
     <Content Include="Css\SearchCss\SearchFlights.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -184,6 +191,7 @@
     <Content Include="Css\CreditCardCss\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Css\Img\3.jpg" />
+    <Content Include="Views\HomeTravel\LoginForPayment.cshtml" />
     <None Include="Views\HomeTravel\Payment.cshtml" />
     <Content Include="Scripts\creditly.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -211,7 +219,6 @@
     <Content Include="fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="ViewModel\" />
     <Folder Include="Views\HomeTravel\images\" />
   </ItemGroup>
