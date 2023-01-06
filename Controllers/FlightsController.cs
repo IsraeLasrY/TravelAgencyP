@@ -18,6 +18,7 @@ namespace TravelAgencyP.Controllers
         // GET: Flights
         public ActionResult AdminHP()
         {
+           
             return View(db.FlightsInfo.ToList());
         }
 

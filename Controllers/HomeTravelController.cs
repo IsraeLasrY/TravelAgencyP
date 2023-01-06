@@ -115,7 +115,7 @@ namespace TravelAgencyP.Controllers
             if ((Convert.ToInt32(db.FlightsInfo.Find(fi.FlightNumber).Seats.Value) - Convert.ToInt32(tickets)) < 0)
             {
                 Response.Write("<script>alert('There are not enough seats left on the flight, choose a smaller amount or another flight');</script>");
-                return View("FindFlight",db.FlightsInfo);
+                return View("FindFlight", db.FlightsInfo);
             }
             fi.Seats = db.FlightsInfo.Find(fi.FlightNumber).Seats.Value;
             fi.PriceTicket = Convert.ToInt32(db.FlightsInfo.Find(fi.FlightNumber).PriceTicket)*Convert.ToInt32(tickets);

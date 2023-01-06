@@ -75,39 +75,45 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FlightNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AirLine)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Terminal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DestinationFlight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OriginFlight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DepDateFlight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LandDateFlight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Seats)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PriceTicket)$
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-               
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlightNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AirLine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Terminal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinationFlight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OriginFlight)
+        </td>
+        <td>
+            @{
+                var depDateF = item.DepDateFlight.ToString("dd/MM/yyyy");
+            }
+            @Html.DisplayFor(modelItem => depDateF)
+        </td>
+        <td>
+            @{
+                var landDateF = item.LandDateFlight.ToString("dd/MM/yyyy");
+            }
+            @Html.DisplayFor(modelItem => landDateF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceTicket)$
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+
+    </tr>
         }
 
     </table>

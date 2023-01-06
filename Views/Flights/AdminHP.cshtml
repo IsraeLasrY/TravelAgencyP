@@ -93,10 +93,16 @@
                     @Html.DisplayFor(modelItem => item.OriginFlight)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DepDateFlight)
+                    @{ 
+                        var depDateF = item.DepDateFlight.ToShortDateString();
+                    }
+                    @Html.DisplayFor(modelItem => depDateF)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LandDateFlight)
+                    @{
+                        var landDateF = item.LandDateFlight.ToShortDateString();
+                    }
+                    @Html.DisplayFor(modelItem => landDateF)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Seats)
