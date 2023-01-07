@@ -33,6 +33,6 @@ namespace TravelAgencyP.Models
 
         public int? PriceTicket { get; set; }
 
-        public int? Rating { get; set; }
+        public string RoundTrip { get; set; }
     }
 }

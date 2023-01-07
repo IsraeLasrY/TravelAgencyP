@@ -15,11 +15,14 @@
     <link href="~/Css/SearchCss/SearchFlights.css" rel="stylesheet" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Travel Agency</title>
+    <title>@ViewBag.Title  Search Flight</title>
     <link href="~/Css/HomeCss/Homecss.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <style>
+       
+    </style>
 </head>
 <body>
     <div class="topnav">
@@ -210,7 +213,6 @@
                                                 <option value="OM">Oman</option>
                                                 <option value="PK">Pakistan</option>
                                                 <option value="PW">Palau</option>
-                                                <option value="PS">Palestinian Territory, Occupied</option>
                                                 <option value="PA">Panama</option>
                                                 <option value="PG">Papua New Guinea</option>
                                                 <option value="PY">Paraguay</option>
@@ -558,9 +560,15 @@
                                                     })
                                                 })
                                             </script>
-                                            <input class="form-control" id="date" name="depdate" placeholder="MM/DD/YYY" type="text" />
+                                            <input class="form-control" id="DepDateFlightt" name="depdate" placeholder="MM/DD/YYYY" type="text" />
                                         </div>
-                                        <div><input type="time" id="appt" name="appt"></div>
+                                        <div>
+                                            <br />
+                                            <br />
+                                            <span class="checkbox1">
+                                                <label class="checkbox"><input type="checkbox" name="" checked=""><i></i>Round Trip</label>
+                                            </span>
+                                        </div>
                                         <button type="submit" class="btn btn-base">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                                         </button>
@@ -596,61 +604,73 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="result-body">
-                                        <div class="table-responsive">
-                                            <table class="table widget-26">
-                                                <tbody>
-                                                    @foreach (var item in Model)
-                                                    {
-                                                        
-                                                        <form id="Payment-form" action="LoginForPayment" method="post">
-                                                        <tr>
-                                                            <td>
-                                                                <input type="hidden" name="FlightNum" value=@Html.ValueForModel(item.FlightNumber) />
-                                                                <div class="widget-26-job-emp-img">
-                                                                    <p class="type m-0" >@Html.DisplayFor(modelItem => item.FlightNumber)</p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-title">
-                                                                    <p class="type m-0">@Html.DisplayFor(modelItem => item.OriginFlight) To @Html.DisplayFor(modelItem => item.DestinationFlight)</p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-info">
-                                                                    <p class="type m-0">Time : @Html.DisplayFor(modelItem => item.DepDateFlight)</p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-salary">@Html.DisplayFor(modelItem => item.PriceTicket)$ </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-category bg-soft-base">
-                                                                    <i class="indicator bg-base"></i>
-                                                                    <span>@Html.DisplayFor(modelItem => item.AirLine)- @Html.DisplayFor(modelItem => item.Terminal)</span>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div>
-                                                                    <input type="number" id="numtickets" name="numtickets"
-                                                                           min="1">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-starred">
-                                                                    <button type="submit" class="btn btn-primary">Book Flight</button>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                       
-                                                        </form>
-                                                    }
-                                                </tbody>
-                                            </table>
+                                    <ul class="resp-tabs-list">
+                                        <li class="resp-tab-item"><span>Round Trip</span></li>
+
+                                        <li class="resp-tab-item"><span>One way</span></li>
+                                    </ul>
+
+                                    <div class="resp-tabs-container">
+                                        <div class="tab-1 resp-tab-content roundtrip">
+                                            <div class="result-body">
+                                                <div class="table-responsive">
+                                                    <table class="table widget-26">
+                                                        <tbody>
+                                                            @foreach (var item in Model)
+                                                            {
+
+                                                                <form id="Payment-form" action="LoginForPayment" method="post">
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="hidden" name="FlightNum" value=@Html.ValueForModel(item.FlightNumber) />
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <p class="type m-0">@Html.DisplayFor(modelItem => item.FlightNumber)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <p class="type m-0">@Html.DisplayFor(modelItem => item.OriginFlight) To @Html.DisplayFor(modelItem => item.DestinationFlight)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        @{
+                                                                            var depDateF = item.DepDateFlight.ToShortDateString();
+                                                                        }
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Date : @Html.DisplayFor(modelItem => depDateF)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">@Html.DisplayFor(modelItem => item.PriceTicket)$ </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-category bg-soft-base">
+                                                                            <i class="indicator bg-base"></i>
+                                                                            <span>@Html.DisplayFor(modelItem => item.AirLine)- @Html.DisplayFor(modelItem => item.Terminal)</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>
+                                                                            <input type="number" id="numtickets" name="numtickets"
+                                                                                   min="1">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <button type="submit" class="btn btn-primary">Book Flight</button>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                </form>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
