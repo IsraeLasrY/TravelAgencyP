@@ -42,8 +42,8 @@ namespace TravelAgencyP.Controllers
 
         void connectionString()
         {
-            //con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
-            con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
+            con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            //con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
 
         }
         [HttpPost]
