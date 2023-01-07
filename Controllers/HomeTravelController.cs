@@ -42,8 +42,8 @@ namespace TravelAgencyP.Controllers
 
         void connectionString()
         {
-            con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
-            //con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
+            //con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
 
         }
         [HttpPost]
@@ -78,18 +78,269 @@ namespace TravelAgencyP.Controllers
         [HttpPost]
         public ActionResult SearchFlight()
         {
+            bool trip;
+            int max = -1 , min = -1 ;
+            FlightsInfo info = new FlightsInfo();
+            if(Request.Form["OLocation"] != "From")
+                info.OriginFlight = Request.Form["OLocation"];
+            if (Request.Form["DLocation"] != "To")
+                info.DestinationFlight = Request.Form["DLocation"];
             try
             {
-                FlightsInfo info = new FlightsInfo();
-                info.OriginFlight = Request.Form["OLocation"];
-                info.DestinationFlight = Request.Form["DLocation"];
-                info.DepDateFlight = Convert.ToDateTime(Request.Form["depdate"]);
-                return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight));
+                max = Convert.ToInt32(Request.Form["Maxprice"]);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                return View("FindFlight", db.FlightsInfo);
+
             }
+            try
+            {
+                min = Convert.ToInt32(Request.Form["Minprice"]);
+            }
+            catch(Exception ex) { }
+            try
+            {
+
+                info.DepDateFlight = Convert.ToDateTime(Request.Form["depdate"]);
+            }
+            catch (Exception error)
+            {
+                
+            }
+            trip = Convert.ToBoolean(Request.Form["Roundtrip"]);
+            if(info.OriginFlight == null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) &&  min != -1 && max != -1)
+            {
+                if (trip)
+                {
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+                }
+            }
+            else if(info.OriginFlight == null && info.DestinationFlight == null && !info.DepDateFlight.Year.Equals(0001) && min != -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateFlight == info.DepDateFlight &&  p.PriceTicket >= min && p.PriceTicket <= max));
+            }
+            else if(info.OriginFlight == null && info.DestinationFlight == null && info.DepDateFlight.Year.Equals(0001) && min != -1 && max != -1 )
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.PriceTicket >= min && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight == null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1) 
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.RoundTrip != ""  && p.PriceTicket <= max));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight == null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.RoundTrip != ""));
+                else
+                    return View("FindFlight", db.FlightsInfo);
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.RoundTrip != ""));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight ));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.RoundTrip != ""));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight ));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) && min == -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != ""));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight ));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) && min != -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight  && p.PriceTicket >= min));
+             
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) && min != -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight  && p.PriceTicket >= min && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min != -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight  && p.PriceTicket >= min && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight  && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) && min != -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min ));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight &&  p.PriceTicket >= min));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && !info.DepDateFlight.Year.Equals(0001) && min != -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DepDateFlight == info.DepDateFlight  && p.PriceTicket >= min && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && info.DepDateFlight.Year.Equals(0001) && min != -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight  && p.PriceTicket >= min && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && !info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket <= max));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DepDateFlight == info.DepDateFlight  && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && !info.DepDateFlight.Year.Equals(0001) && min != -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DepDateFlight == info.DepDateFlight  && p.PriceTicket >= min));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min != -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.RoundTrip != "" && p.PriceTicket >= min && p.PriceTicket <= max));
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight  && p.PriceTicket >= min && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.RoundTrip != "" &&  p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.PriceTicket <= max));
+
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min != -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight  && p.RoundTrip != "" && p.PriceTicket >= min ));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight  && p.PriceTicket >= min));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight == null && !info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateFlight == info.DepDateFlight && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight == null && !info.DepDateFlight.Year.Equals(0001) && min != -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" && p.PriceTicket >= min ));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateFlight == info.DepDateFlight  && p.PriceTicket >= min));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.DestinationFlight == info.DestinationFlight && p.RoundTrip != "" && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateFlight == info.DepDateFlight && p.PriceTicket >= min));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min != -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.DestinationFlight == info.DestinationFlight && p.RoundTrip != "" && p.PriceTicket >= min ));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.PriceTicket >= min));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight != null && !info.DepDateFlight.Year.Equals(0001) && min == -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" ));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight ));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && info.DepDateFlight.Year.Equals(0001) && min != -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.RoundTrip != "" && p.PriceTicket >= min));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.PriceTicket >= min));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max != -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.RoundTrip != ""  && p.PriceTicket <= max));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight  && p.PriceTicket <= max));
+            }
+            else if (info.OriginFlight != null && info.DestinationFlight == null && !info.DepDateFlight.Year.Equals(0001) && min == -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight  && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" ));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DepDateFlight == info.DepDateFlight ));
+            }
+            else if (info.OriginFlight == null && info.DestinationFlight != null && info.DepDateFlight.Year.Equals(0001) && min == -1 && max == -1)
+            {
+                if (trip)
+                    return View("FindFlight", db.FlightsInfo.Where(p =>  p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight && p.RoundTrip != "" ));
+
+                else
+                    return View("FindFlight", db.FlightsInfo.Where(p => p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight ));
+
+            }
+            return View("FindFlight", db.FlightsInfo.Where(p => p.OriginFlight == info.OriginFlight && p.DestinationFlight == info.DestinationFlight && p.DepDateFlight == info.DepDateFlight  && p.PriceTicket >= min && p.PriceTicket <= max));
+
         }
         public ActionResult VerifyPayment()
         {

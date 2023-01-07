@@ -297,13 +297,13 @@
                                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                             <select class="custom-select" id="exampleFormControlSelect1" name="DLocation">
                                                 <option>To</option>
-                                                <option value="AF">Afghanistan</option>
-                                                <option value="AX">Åland Islands</option>
-                                                <option value="AL">Albania</option>
-                                                <option value="DZ">Algeria</option>
-                                                <option value="AS">American Samoa</option>
-                                                <option value="AD">Andorra</option>
-                                                <option value="AO">Angola</option>
+                                                <option value="Afghanistan">Afghanistan</option>
+                                                <option value="Åland Islands">Åland Islands</option>
+                                                <option value="Albania">Albania</option>
+                                                <option value="Algeria">Algeria</option>
+                                                <option value="American Samoa">American Samoa</option>
+                                                <option value="Andorra">Andorra</option>
+                                                <option value="Angola">Angola</option>
                                                 <option value="AI">Anguilla</option>
                                                 <option value="AQ">Antarctica</option>
                                                 <option value="AG">Antigua and Barbuda</option>
@@ -563,15 +563,21 @@
                                             <input class="form-control" id="DepDateFlightt" name="depdate" placeholder="MM/DD/YYYY" type="text" />
                                         </div>
                                         <div>
+                                            Min price <input type="number" id="price" name="Minprice" size="1" min="1" />
+                                        </div>
+                                        <div>
+                                            Max price <input type="number" id="price" name="Maxprice" size="1" min="1" />
+                                        </div>
+                                        <div>
                                             <br />
                                             <br />
                                             <span class="checkbox1">
-                                                <label class="checkbox"><input type="checkbox" name="" checked=""><i></i>Round Trip</label>
+                                                <label class="checkbox"><input type="checkbox" name="Roundtrip" value="true"><i></i>Round Trip</label>
                                             </span>
                                         </div>
-                                        <button type="submit" class="btn btn-base">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                                        </button>
+                                            <button type="submit" class="btn btn-base">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                            </button>
                                     </div>
                                 </div>
                             </div>
@@ -604,12 +610,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <ul class="resp-tabs-list">
-                                        <li class="resp-tab-item"><span>Round Trip</span></li>
-
-                                        <li class="resp-tab-item"><span>One way</span></li>
-                                    </ul>
-
                                     <div class="resp-tabs-container">
                                         <div class="tab-1 resp-tab-content roundtrip">
                                             <div class="result-body">
