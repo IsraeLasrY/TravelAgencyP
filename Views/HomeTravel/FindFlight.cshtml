@@ -28,7 +28,7 @@
     <div class="topnav">
         <a href="/HomeTravel/HomePage">Home</a>
         <a class="active" href="/HomeTravel/FindFlight">Find Flight</a>
-        <a href="/HomeTravel/LoginAdmin">Login AdmiN</a>
+        <a href="/HomeTravel/LoginAdmin" onclick="document.getElementById('id01').style.display='block'">Login AdmiN</a>
         <a href="/HomeTravel/AboutUs">AbouTUs</a>
     </div>
 
@@ -423,6 +423,9 @@
                                             Max price <input type="number" id="price" name="Maxprice" size="1" min="1" />
                                         </div>
                                         <div>
+                                            Travelers <input type="number" id="price" name="Maxprice" size="1" min="1" />
+                                        </div>
+                                        <div>
                                             <br />
                                             <br />
                                             <span class="checkbox1">
@@ -453,8 +456,8 @@
                                                 <div class="result-actions">
                                                     <div class="result-sorting">
                                                         <span>Sort By:</span>
-                                                        <select class="form-control border-0" id="exampleOption">
-                                                            <option value="1">Price - High to Low</option>
+                                                        <select class="form-control border-0" id="sortOption" onchange="SortFlights(this)>
+                                                            <option value="1">Price - High to Low </option>
                                                             <option value="2">Price - Low to High</option>
                                                             <option value="3">Popularity</option>
                                                             <option value="4">Country</option>
@@ -506,7 +509,7 @@
                                                                     <td>
                                                                         <div>
                                                                             <input type="number" id="numtickets" name="numtickets"
-                                                                                   min="1">
+                                                                                   min="1" value="1">
                                                                         </div>
                                                                     </td>
                                                                     <td>

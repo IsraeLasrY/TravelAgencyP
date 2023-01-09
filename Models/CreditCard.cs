@@ -19,5 +19,9 @@ namespace TravelAgencyP.Models
 
         [Column(TypeName = "date")]
         public DateTime? ExpirationDate { get; set; }
+
+        [StringLength(50)]
+        public string ID { get; set; }
+
     }
 }

@@ -24,6 +24,10 @@ namespace TravelAgencyP.Models
             modelBuilder.Entity<CreditCard>()
                 .Property(e => e.CardNumber)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<CreditCard>()
+                .Property(e => e.ID)
+                .IsUnicode(false);
         }
     }
 }

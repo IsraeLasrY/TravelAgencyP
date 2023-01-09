@@ -40,23 +40,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<div class="first-row form-group">
                                     <div>
 										@{ 
-                                            var price = ViewData["price"];
+											var price = ViewData["price"];
+											var name = ViewData["namecard"];
+											var num = ViewData["numcard"];
+											var exp = ViewData["expcard"];
 										}
                                         <label class="control-label">For payment : @price $</label>
                                     </div>
 									<div class="controls">
 										<label class="control-label">Name on Card</label>
-										<input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith" required="">
+										<input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith" required="" value=@name>
 									</div>
 									<div class="controls">
 										<label class="control-label">Card Number</label>
-										<input class="number credit-card-number form-control" type="text" name="number"inputmode="numeric" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;" required="">
+										<input class="number credit-card-number form-control" type="text" name="number"inputmode="numeric" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;" required="" value=@num>
 									</div>
 									<div class="w3_agileits_card_number_grids">
 										<div class="w3_agileits_card_number_grid_left">
 											<div class="controls">
 												<label class="control-label">Expiration Date</label>
-												<input class="expiration-month-and-year form-control date" type="text" name="expiration-month-and-year" placeholder="MM / YY" required="">
+												<input class="expiration-month-and-year form-control date" type="text" name="expiration-month-and-year" placeholder="MM / YY" required="" value=@exp>
 											</div>
 										</div>
 										<div class="w3_agileits_card_number_grid_right">
