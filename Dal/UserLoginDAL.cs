@@ -8,8 +8,8 @@ namespace TravelAgencyP.Models
     public partial class UserLoginDAL : DbContext
     {
         public UserLoginDAL()
-            //: base("data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
-            : base("Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True")
+            : base("data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
+            //: base("Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True")
         {
         }
 

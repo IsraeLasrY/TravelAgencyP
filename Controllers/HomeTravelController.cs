@@ -43,8 +43,8 @@ namespace TravelAgencyP.Controllers
 
         void connectionString()
         {
-            //con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
-            con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
+            con.ConnectionString = "data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            //con.ConnectionString = "Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True";
 
         }
         [HttpPost]
@@ -154,12 +154,12 @@ namespace TravelAgencyP.Controllers
         {
             FlightsInfo fi = (FlightsInfo)Session["flight"];
             var ti = Session["tickets"];
-            CreditCard creditCard = new CreditCard();
-            creditCard.CardNumber = Request.Form["number"];
-            creditCard.NameOnCard = Request.Form["name"];
-            creditCard.ID = (string)Session["id"];
-            creditCard.ExpirationDate =Convert.ToDateTime( "01/"+Request.Form["expiration-month-and-year"]);
-            DbC.CreditCard.Add(creditCard);
+            CreditCard creditCards = new CreditCard();
+            creditCards.CardNumber = Request.Form["number"];
+            creditCards.NameOnCard = Request.Form["name"];
+            creditCards.ID = (string)Session["id"];
+            creditCards.ExpirationDate = Request.Form["expiration-month-and-year"];
+            DbC.CreditCard.Add(creditCards);
             db.FlightsInfo.Find(fi.FlightNumber).Seats = Convert.ToInt32(fi.Seats) - Convert.ToInt32(ti);
             db.SaveChanges();
             DbC.SaveChanges();
@@ -199,7 +199,11 @@ namespace TravelAgencyP.Controllers
             if (dr.Read())
             {
                 con.Close();
-                ci = DbC.CreditCard.Where(p=> p.ID == User.ID).Single();
+                try
+                {
+                    ci = DbC.CreditCard.Where(p => p.ID == User.ID).Single();
+                }
+                catch (Exception error) { }
                 if (ci == null)
                 {
                     ViewData["namecard"] = "";

@@ -16,9 +16,8 @@ namespace TravelAgencyP.Models
         [Key]
         [StringLength(50)]
         public string CardNumber { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? ExpirationDate { get; set; }
+        [StringLength(50)]
+        public string ExpirationDate { get; set; }
 
         [StringLength(50)]
         public string ID { get; set; }
