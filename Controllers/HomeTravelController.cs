@@ -159,7 +159,11 @@ namespace TravelAgencyP.Controllers
             creditCards.NameOnCard = Request.Form["name"];
             creditCards.ID = (string)Session["id"];
             creditCards.ExpirationDate = Request.Form["expiration-month-and-year"];
-            DbC.CreditCard.Add(creditCards);
+            if(DbC.CreditCard.Where(p => p.ID == creditCards.ID).Count() == 0)
+            {
+                DbC.CreditCard.Add(creditCards);
+                DbC.SaveChanges();
+            }
             db.FlightsInfo.Find(fi.FlightNumber).Seats = Convert.ToInt32(fi.Seats) - Convert.ToInt32(ti);
             db.SaveChanges();
             DbC.SaveChanges();

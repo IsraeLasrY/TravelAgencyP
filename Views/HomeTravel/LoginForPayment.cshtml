@@ -20,32 +20,32 @@
 </head>
 <body>
 
+    
+    <form class="modal-content animate" action="VerifyUser" method="post">
+        <div class="imgcontainer">
+            <span onclick="history.back()" class="close" title="Close Modal">&times;</span>
+            <img src="~/Css/Img/Jetliner-Airplane-Flying.jpg" />
+        </div>
 
-        <form class="modal-content animate" action="VerifyUser" method="post">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="~/Css/Img/Jetliner-Airplane-Flying.jpg" /> 
-            </div>
 
+        <div class="container">
+            <label for="ID"><b>User ID</b></label>
+            <input type="text" placeholder="Enter ID" name="ID" required>
 
-            <div class="container">
-                <label for="ID"><b>User ID</b></label>
-                <input type="text" placeholder="Enter ID" name="ID" required>
+            <label for="UserEmail"><b>UserEmail</b></label>
+            <input type="text" placeholder="Enter Email" name="UserEmail" required>
 
-                <label for="UserEmail"><b>UserEmail</b></label>
-                <input type="text" placeholder="Enter Email" name="UserEmail" required>
+            <label for="UserPassword"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="UserPassword" required>
 
-                <label for="UserPassword"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="UserPassword" required>
+            <button type="submit">Login For Payment</button>
+        </div>
 
-                <button type="submit">Login For Payment</button>
-            </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-
-            </div>
-        </form>
+        </div>
+    </form>
 
     </div>
 

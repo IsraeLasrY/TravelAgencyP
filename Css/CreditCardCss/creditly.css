@@ -114,3 +114,8 @@
 		font-size: 1em;
 	}
 }
+.topcorner {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

@@ -1,13 +1,8 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Card Payment Forms Responsive Widget Template :: W3layouts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,6 +25,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
 
 <body>
+    <div class="topcorner">
+        <button type="button" class="btn btn-warning" onclick="history.back()">Go Back</buttontype="button">
+    </div>
     <div class="main">
         <h1>Card Payment Forms</h1>
         <div id="myAccordion" class="nl-accordion">
@@ -89,46 +87,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
                 </li>
-                @*<li>
-                        <input type="radio" id="nl-radio-2" name="nl-radio" class="nl-radio" />
-                        <label class="nl-label" for="nl-radio-2">PayPal</label>
-                        <div class="check w3ls"></div>
-                        <div class="nl-content">
-                            <div class="agileits_w3layouts_tab2 agileits_w3layouts_tab">
-                                <h3>Don't Have an Account <a href="#">Register here</a></h3>
-                                <form action="#" method="post">
-                                    <div class="creditly-wrapper wthree">
-                                        <input type="email" name="Email" placeholder="Email" required="">
-                                        <input type="password" name="Password" placeholder="Password" required="">
-                                        <input type="submit" value="Login">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </li>*@
             </ul>
         </div>
-       
+
     </div>
     <!-- js scripts -->
     <!-- js -->
     <script>
-    () =>  {
-    var creditly = Creditly.initialize(
-    '.creditly-wrapper .expiration-month-and-year',
-    '.creditly-wrapper .credit-card-number',
-    '.creditly-wrapper .security-code',
-    '.creditly-wrapper .card-type');
+        () => {
+            var creditly = Creditly.initialize(
+                '.creditly-wrapper .expiration-month-and-year',
+                '.creditly-wrapper .credit-card-number',
+                '.creditly-wrapper .security-code',
+                '.creditly-wrapper .card-type');
 
-        jQuery(".creditly-card-form .submit").click(function (e) {
-    e.preventDefault();
-    var output = creditly.validate();
-    if (output) {
-    // Your validated credit card output
-    console.log(output);
-    }
-    });
-    };
+            jQuery(".creditly-card-form .submit").click(function (e) {
+                e.preventDefault();
+                var output = creditly.validate();
+                if (output) {
+                    // Your validated credit card output
+                    console.log(output);
+                }
+            });
+        };
     </script>
     <!-- //credit-card -->
     <!-- //js scripts -->
@@ -137,40 +118,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         function initPayPalButton() {
             const priceElemnt = document.getElementById("price")
             const price = parseInt(priceElemnt.innerText.replace(" $", "").replace(" ", ""))
-        console.log(price)
-        paypal.Buttons({
-            style: {
-            shape: 'rect',
-        color: 'gold',
-        layout: 'vertical',
-        label: 'paypal',
+            console.log(price)
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'gold',
+                    layout: 'vertical',
+                    label: 'paypal',
 
                 },
 
-        createOrder: function (data, actions) {
+
+                createOrder: function (data, actions) {
                     return actions.order.create({
-            purchase_units: [{"amount": {"currency_code": "USD", "value": price } }]
+                        purchase_units: [{ "amount": { "currency_code": "USD", "value": price } }]
                     });
                 },
 
-        onApprove: function (data, actions) {
+                onApprove: function (data, actions) {
                     return actions.order.capture().then(function (orderData) {
 
-            // Full available details
-            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                        // Full available details
+                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
 
-        // Show a success message within this page, e.g.
-        const element = document.getElementById('paypal-button-container');
-        element.innerHTML = '';
-        element.innerHTML = '<h3>Thank you for your payment!</h3>';
-
+                        // Show a success message within this page, e.g.
+                        const element = document.getElementById('paypal-button-container');
+                        element.innerHTML = '';
+                        //element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                        actions.redirect('HomePage.cshtml');
                         // Or go to another URL:  actions.redirect('thank_you.html');
 
                     });
                 },
 
-        onError: function (err) {
-            console.log(err);
+                onError: function (err) {
+                    console.log(err);
                 }
             }).render('#paypal-button-container');
         }
