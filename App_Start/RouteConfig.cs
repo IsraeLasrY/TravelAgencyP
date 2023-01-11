@@ -26,6 +26,12 @@ namespace TravelAgencyP
           );
 
             routes.MapRoute(
+                name: "FindFlightPage",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "HomeTravel", action = "FindFlight", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
            name: "LoginAdminPage",
            url: "{controller}/{action}/{id}",
            defaults: new { controller = "HomeTravel", action = "LoginAdmin", id = UrlParameter.Optional }
@@ -35,6 +41,24 @@ namespace TravelAgencyP
           name: "LoginAcc",
           url: "{controller}/{action}/{id}",
           defaults: new { controller = "HomeTravel", action = "Verify", id = UrlParameter.Optional }
+          );
+
+            routes.MapRoute(
+          name: "PaymentForTicket",
+          url: "{controller}/{action}/{id}",
+          defaults: new { controller = "HomeTravel", action = "Payment", id = UrlParameter.Optional }
+          );
+
+            routes.MapRoute(
+         name: "LoginForPaymentPage",
+         url: "{controller}/{action}/{id}",
+         defaults: new { controller = "HomeTravel", action = "LoginForPayment", id = UrlParameter.Optional }
+         );
+
+            routes.MapRoute(
+          name: "VerifyUserPage",
+          url: "{controller}/{action}/{id}",
+          defaults: new { controller = "HomeTravel", action = "VerifyUser", id = UrlParameter.Optional }
           );
 
             routes.MapRoute(

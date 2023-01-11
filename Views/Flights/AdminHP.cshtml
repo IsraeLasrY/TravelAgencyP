@@ -22,6 +22,7 @@
     <div class="topnav">
         <a class="active" href="/Flights/AdminHP">Home Admin</a>
         <a href="/Flights/AddFlights">Add Flights</a>
+        <a href="/HomeTravel/HomePage">LogOut</a>
     </div>
     <p>
 
@@ -67,7 +68,7 @@
                 -
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rating)
+                @Html.DisplayNameFor(model => model.RoundTrip)
                 -
             </th>
             <th></th>
@@ -92,10 +93,16 @@
                     @Html.DisplayFor(modelItem => item.OriginFlight)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DepDateFlight)
+                    @{ 
+                        var depDateF = item.DepDateFlight.ToShortDateString();
+                    }
+                    @Html.DisplayFor(modelItem => depDateF)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LandDateFlight)
+                    @{
+                        var landDateF = item.LandDateFlight.ToShortDateString();
+                    }
+                    @Html.DisplayFor(modelItem => landDateF)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Seats)
@@ -104,7 +111,7 @@
                     @Html.DisplayFor(modelItem => item.PriceTicket)$
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
+                    @Html.DisplayFor(modelItem => item.RoundTrip)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.FlightNumber }, new { @class = "myActionLink" }) |

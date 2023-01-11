@@ -18,6 +18,7 @@ namespace TravelAgencyP.Controllers
         // GET: Flights
         public ActionResult AdminHP()
         {
+           
             return View(db.FlightsInfo.ToList());
         }
 
@@ -59,6 +60,8 @@ namespace TravelAgencyP.Controllers
 
             return View(flightsInfo);
         }
+
+
 
         // GET: Flights/Edit/5
         public ActionResult Edit(string id)

@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Card Payment Forms Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Meta tag Keywords -->
+    <!-- css files -->
+    <link href="~/Css/CreditCardCss/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Css/CreditCardCss/creditly.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Css/CreditCardCss/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+    <!-- Web Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+    <!-- //Web Fonts -->
+</head>
+<script type="text/javascript" src="Scripts/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="Scripts/creditly.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+
+<body>
+    <div class="topcorner">
+        <button type="button" class="btn btn-warning" onclick="history.back()">Go Back</buttontype="button">
+    </div>
+    <div class="main">
+        <h1>Card Payment Forms</h1>
+        <div id="myAccordion" class="nl-accordion">
+            <ul>
+                <li>
+                    <input type="radio" id="nl-radio-1" name="nl-radio" class="nl-radio" checked="checked" />
+                    <label class="nl-label" for="nl-radio-1">Payment Card</label>
+                    <div class="nl-content">
+                        <div class="agileits_w3layouts_tab1 agileits_w3layouts_tab">
+                            <form action="VerifyPayment" method="post" class="creditly-card-form agileinfo_form">
+                                <section class="creditly-wrapper wthree w3_agileits_wrapper">
+                                    <div class="first-row form-group">
+                                        <div>
+                                            @{
+                                                var price = ViewData["price"];
+                                                var name = ViewData["namecard"];
+                                                var num = ViewData["numcard"];
+                                                var exp = ViewData["expcard"];
+                                            }
+                                            <label class="control-label">For payment : </label>
+                                            <div id="price"> @price $</div>
+                                        </div>
+                                        <div class="controls">
+                                            <label class="control-label">Name on Card</label>
+                                            <input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith" required="" value=@name>
+                                        </div>
+                                        <div class="controls">
+                                            <label class="control-label">Card Number</label>
+                                            <input class="number credit-card-number form-control" type="text" name="number" inputmode="numeric" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;" required="" value=@num>
+                                        </div>
+                                        <div class="w3_agileits_card_number_grids">
+                                            <div class="w3_agileits_card_number_grid_left">
+                                                <div class="controls">
+                                                    <label class="control-label">Expiration Date</label>
+                                                    <input class="expiration-month-and-year form-control date" type="text" name="expiration-month-and-year" placeholder="MM / YY" required="" value=@exp>
+                                                </div>
+                                            </div>
+                                            <div class="w3_agileits_card_number_grid_right">
+                                                <div class="controls">
+                                                    <label class="control-label">CVV</label>
+                                                    <input class="security-code form-control" Â·inputmode="numeric" type="text" name="security-code" placeholder="&#149;&#149;&#149;" required="">
+                                                </div>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                    </div>
+                                    <button class="submit"><span>Make a payment <i class="fa fa-long-arrow-right" aria-hidden="true"></i></span></button>
+                                </section>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div id="smart-button-container">
+                        <div style="text-align: center;">
+                            <div id="paypal-button-container"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- js scripts -->
+    <!-- js -->
+    <script>
+        () => {
+            var creditly = Creditly.initialize(
+                '.creditly-wrapper .expiration-month-and-year',
+                '.creditly-wrapper .credit-card-number',
+                '.creditly-wrapper .security-code',
+                '.creditly-wrapper .card-type');
+
+            jQuery(".creditly-card-form .submit").click(function (e) {
+                e.preventDefault();
+                var output = creditly.validate();
+                if (output) {
+                    // Your validated credit card output
+                    console.log(output);
+                }
+            });
+        };
+    </script>
+    <!-- //credit-card -->
+    <!-- //js scripts -->
+    <script>
+
+        function initPayPalButton() {
+            const priceElemnt = document.getElementById("price")
+            const price = parseInt(priceElemnt.innerText.replace(" $", "").replace(" ", ""))
+            console.log(price)
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'gold',
+                    layout: 'vertical',
+                    label: 'paypal',
+
+                },
+
+
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{ "amount": { "currency_code": "USD", "value": price } }]
+                    });
+                },
+
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (orderData) {
+
+                        // Full available details
+                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                        // Show a success message within this page, e.g.
+                        const element = document.getElementById('paypal-button-container');
+                        element.innerHTML = '';
+                        //element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                        actions.redirect('HomePage.cshtml');
+                        // Or go to another URL:  actions.redirect('thank_you.html');
+
+                    });
+                },
+
+                onError: function (err) {
+                    console.log(err);
+                }
+            }).render('#paypal-button-container');
+        }
+        initPayPalButton();
+    </script>
+</body>
+</html>
