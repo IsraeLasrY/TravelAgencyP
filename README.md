@@ -10,7 +10,7 @@ Password: Nofer 1997
 After logging in as a user, you can pay for the tickets you ordered with a credit card or with PAYPAL
 To pay with PAYPAL, we need to create a PAYPAL user, insert a personal credit, and after that pay.
 In addition, on our site, there is an option to connect with ADMIN, click on the button and go to the ADMIN login
-Email: Israelasry@gmail.com
+Email: Israel1996L@gmail.com
 Password: Israel1996L
 After connecting, we can add, edit, delete and see details about the specific flight by number T.
 And in addition, a last button tells about us and what we do.
