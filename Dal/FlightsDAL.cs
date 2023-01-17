@@ -6,11 +6,11 @@ using TravelAgencyP.Models;
 
 namespace TravelAgencyP.Dal
 {
-    public partial class FlightDAL : DbContext
+    public partial class FlightsDAL : DbContext
     {
-        public FlightDAL()
+        public FlightsDAL()
              : base("data source=ISRAELASRY;initial catalog=tempdb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
-             //: base("Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True")
+            //: base("Data Source=YAM;Initial Catalog=tempdb;Integrated Security=True")
         {
         }
 
@@ -31,11 +31,15 @@ namespace TravelAgencyP.Dal
                 .IsUnicode(false);
 
             modelBuilder.Entity<FlightsInfo>()
-                .Property(e => e.DestinationFlight)
+                .Property(e => e.DestinationF)
                 .IsUnicode(false);
 
             modelBuilder.Entity<FlightsInfo>()
-                .Property(e => e.OriginFlight)
+                .Property(e => e.OriginF)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<FlightsInfo>()
+                .Property(e => e.RoundTrip)
                 .IsUnicode(false);
         }
     }

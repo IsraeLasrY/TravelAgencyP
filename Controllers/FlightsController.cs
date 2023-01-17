@@ -13,7 +13,7 @@ namespace TravelAgencyP.Controllers
 {
     public class FlightsController : Controller
     {
-        private FlightDAL db = new FlightDAL();
+        private FlightsDAL db = new FlightsDAL();
 
         // GET: Flights
         public ActionResult AdminHP()
@@ -45,10 +45,9 @@ namespace TravelAgencyP.Controllers
 
         // POST: Flights/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddFlights([Bind(Include = "FlightNumber,AirLine,Terminal,DestinationFlight,OriginFlight,DepDateFlight,LandDateFlight,Seats,PriceTicket,Rating")] FlightsInfo flightsInfo)
+        public ActionResult AddFlights([Bind(Include = "FlightNumber,AirLine,Terminal,DestinationF,OriginF,DepDateF,LandDateF,DepT,LandT,Seats,PriceTicket,RoundTrip")] FlightsInfo flightsInfo)
         {
             //SubmitCreate
             if (ModelState.IsValid)
@@ -80,10 +79,9 @@ namespace TravelAgencyP.Controllers
 
         // POST: Flights/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FlightNumber,AirLine,Terminal,DestinationFlight,OriginFlight,DepDateFlight,LandDateFlight,Seats,PriceTicket,Rating")] FlightsInfo flightsInfo)
+        public ActionResult Edit([Bind(Include = "FlightNumber,AirLine,Terminal,DestinationF,OriginF,DepDateF,LandDateF,DepT,LandT,Seats,PriceTicket,RoundTrip")] FlightsInfo flightsInfo)
         {
             if (ModelState.IsValid)
             {

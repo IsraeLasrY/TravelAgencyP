@@ -133,11 +133,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Dal\FlightDAL.cs" />
     <Compile Include="Dal\AdminDAL.cs" />
     <Compile Include="Models\AdminInfo.cs" />
     <Compile Include="Models\CreditCard.cs" />
     <Compile Include="Dal\CreditCardsDAL.cs" />
+    <Compile Include="Dal\FlightsDAL.cs" />
     <Compile Include="Models\FlightsInfo.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Dal\UserLoginDAL.cs" />
@@ -154,6 +154,11 @@
     <Content Include="Css\Img\AdminPic.png" />
     <Content Include="Css\Img\Jetliner-Airplane-Flying.jpg" />
     <Content Include="Css\SearchCss\SearchFlights.css" />
+    <Content Include="Css\SuccessfulPayCss\PaySuccessful.css" />
+    <Content Include="DBScripts\SQLAdminInfoNew.sql" />
+    <Content Include="DBScripts\SQLCreditCard.sql" />
+    <Content Include="DBScripts\SQLFlights[1].sql" />
+    <Content Include="DBScripts\SQLUserInfo.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -213,10 +218,10 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Views\HomeTravel\PaymentSuccessful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="Views\HomeTravel\images\" />
   </ItemGroup>
   <ItemGroup>

@@ -51,39 +51,55 @@
                                                             <tbody>
                                                                 @foreach (var item in Model)
                                                                 {
-                                                                    <tr>
-                                                                        <td>
-                                                                            <input type="hidden" name="FlightNum" value=@Html.ValueForModel(item.FlightNumber) />
-                                                                            <div class="widget-26-job-emp-img">
-                                                                                <p class="type m-0">@Html.DisplayFor(modelItem => item.FlightNumber)</p>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="widget-26-job-title">
-                                                                                <p class="type m-0">@Html.DisplayFor(modelItem => item.OriginFlight) To @Html.DisplayFor(modelItem => item.DestinationFlight)</p>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            @{
-                                                                                var depDateF = item.DepDateFlight.ToShortDateString();
-                                                                            }
-                                                                            <div class="widget-26-job-info">
-                                                                                <p class="type m-0">Date : @Html.DisplayFor(modelItem => depDateF)</p>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="widget-26-job-salary">@Html.DisplayFor(modelItem => item.PriceTicket)$ </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="widget-26-job-category bg-soft-base">
-                                                                                <i class="indicator bg-base"></i>
-                                                                                <span>@Html.DisplayFor(modelItem => item.AirLine)- @Html.DisplayFor(modelItem => item.Terminal)</span>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="widget-26-job-salary">Seats left : @Html.DisplayFor(modelItem => item.Seats) </div>
-                                                                        </td>
-                                                                    </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="hidden" name="FlightNum" value=@Html.ValueForModel(item.FlightNumber) />
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <p class="type m-0">@Html.DisplayFor(modelItem => item.FlightNumber)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <p class="type m-0">@Html.DisplayFor(modelItem => item.OriginF) To @Html.DisplayFor(modelItem => item.DestinationF)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        @{
+                                                                            var depDateF = item.DepDateF.ToShortDateString();
+                                                                        }
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Date : @Html.DisplayFor(modelItem => depDateF)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        @{
+                                                                            var depT = item.DepT.ToString(@"hh\:mm");
+                                                                        }
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Departure Time : @Html.DisplayFor(modelItem => depT)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        @{
+                                                                            var landT = item.LandT.ToString(@"hh\:mm");
+                                                                        }
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Landing Time : @Html.DisplayFor(modelItem => landT)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">@Html.DisplayFor(modelItem => item.PriceTicket)$ </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-category bg-soft-base">
+                                                                            <i class="indicator bg-base"></i>
+                                                                            <span>@Html.DisplayFor(modelItem => item.AirLine)- @Html.DisplayFor(modelItem => item.Terminal)</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">Seats left : @Html.DisplayFor(modelItem => item.Seats) </div>
+                                                                    </td>
+                                                                </tr>
                                                                 }
                                                             </tbody>
                                                         </table>
