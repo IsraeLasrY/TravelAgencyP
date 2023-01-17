@@ -20,19 +20,26 @@ namespace TravelAgencyP.Models
         public string Terminal { get; set; }
 
         [StringLength(50)]
-        public string DestinationFlight { get; set; }
+        public string DestinationF { get; set; }
 
         [StringLength(50)]
-        public string OriginFlight { get; set; }
+        public string OriginF { get; set; }
 
-        public DateTime DepDateFlight { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime DepDateF { get; set; }
 
-        public DateTime LandDateFlight { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime LandDateF { get; set; }
+
+        public TimeSpan DepT { get; set; }
+
+        public TimeSpan LandT { get; set; }
 
         public int? Seats { get; set; }
 
         public int? PriceTicket { get; set; }
 
+        [StringLength(50)]
         public string RoundTrip { get; set; }
     }
 }

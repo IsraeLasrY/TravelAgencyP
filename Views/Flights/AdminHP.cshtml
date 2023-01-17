@@ -31,45 +31,40 @@
     <table class="table">
         <tr>
             <th>
-                -
-                @Html.DisplayNameFor(model => model.FlightNumber)
-                -
+                @Html.DisplayNameFor(model => model.FlightNumber)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AirLine)
-                -
+                @Html.DisplayNameFor(model => model.AirLine)-
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Terminal)-
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationF)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Terminal)
-                -
+                @Html.DisplayNameFor(model => model.OriginF)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DestinationFlight)
-                -
+                @Html.DisplayNameFor(model => model.DepDateF)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OriginFlight)
-                -
+                @Html.DisplayNameFor(model => model.LandDateF)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DepDateFlight)
-                -
+                @Html.DisplayNameFor(model => model.DepT)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LandDateFlight)
-                -
+                @Html.DisplayNameFor(model => model.LandT)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Seats)
-                -
+                @Html.DisplayNameFor(model => model.Seats)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PriceTicket)
-                -
+                @Html.DisplayNameFor(model => model.PriceTicket)-
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RoundTrip)
-                -
+                @Html.DisplayNameFor(model => model.RoundTrip)-
             </th>
             <th></th>
         </tr>
@@ -83,26 +78,38 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AirLine)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Terminal)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.DestinationF)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DestinationFlight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OriginFlight)
+                    @Html.DisplayFor(modelItem => item.OriginF)
                 </td>
                 <td>
                     @{ 
-                        var depDateF = item.DepDateFlight.ToShortDateString();
+                        var depDateF = item.DepDateF.ToShortDateString();
                     }
                     @Html.DisplayFor(modelItem => depDateF)
                 </td>
                 <td>
                     @{
-                        var landDateF = item.LandDateFlight.ToShortDateString();
+                        var landDateF = item.LandDateF.ToShortDateString();
                     }
                     @Html.DisplayFor(modelItem => landDateF)
+                </td>
+                <td>
+                    @{
+                        var depT = item.DepT.ToString(@"hh\:mm");
+                    }
+                    @Html.DisplayFor(modelItem => depT)
+                </td>
+                <td>
+                    @{
+                        var landT = item.LandT.ToString(@"hh\:mm");
+                    }
+                    @Html.DisplayFor(modelItem => landT)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Seats)

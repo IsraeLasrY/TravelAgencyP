@@ -1,0 +1,29 @@
+﻿
+
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Payment Successful</title>
+    <link href="~/Css/SuccessfulPayCss/PaySuccessful.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<style>
+</style>
+<body>
+    <div class="card">
+       
+        <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+            <i class="checkmark">✓</i>
+        </div>
+        <h1>Success</h1>
+        <p>Your flight reservation has been completed!<br /> The tickets will be sent to your Email next few minutes.<br /> Thank you and good day!</p>
+    </div>
+    <div class="py-10 text-center">
+        @Html.ActionLink("Go Back To HomePage", "HomePage", new { }, new { @class = "myActionLink" })
+    </div>
+</body>
+</html>

@@ -486,15 +486,23 @@
                                                                     </td>
                                                                     <td>
                                                                         <div class="widget-26-job-title">
-                                                                            <p class="type m-0">@Html.DisplayFor(modelItem => item.OriginFlight) To @Html.DisplayFor(modelItem => item.DestinationFlight)</p>
+                                                                            <p class="type m-0">@Html.DisplayFor(modelItem => item.OriginF) To @Html.DisplayFor(modelItem => item.DestinationF)</p>
                                                                         </div>
                                                                     </td>
                                                                     <td>
                                                                         @{
-                                                                            var depDateF = item.DepDateFlight.ToShortDateString();
+                                                                            var depDateF = item.DepDateF.ToShortDateString();
                                                                         }
                                                                         <div class="widget-26-job-info">
                                                                             <p class="type m-0">Date : @Html.DisplayFor(modelItem => depDateF)</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        @{
+                                                                            var depT = item.DepT.ToString(@"hh\:mm");
+                                                                        }
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Departure Time : @Html.DisplayFor(modelItem => depT)</p>
                                                                         </div>
                                                                     </td>
                                                                     <td>

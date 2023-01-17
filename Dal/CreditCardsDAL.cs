@@ -2,8 +2,9 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
+    using TravelAgencyP.Models;
 
-namespace TravelAgencyP.Models
+namespace TravelAgencyP.Dal
 {
     public partial class CreditCardsDAL : DbContext
     {

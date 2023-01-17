@@ -16,14 +16,14 @@ namespace TravelAgencyP.Controllers
 {
     public class HomeTravelController : Controller
     {
-        private FlightDAL db = new FlightDAL();
+        private FlightsDAL db = new FlightsDAL();
         private AdminDAL DB = new AdminDAL();
         private CreditCardsDAL DbC = new CreditCardsDAL();
 
         // GET: HomeTravel
         public ActionResult HomePage()
         {
-            return View(db.FlightsInfo.Where(p=>p.DepDateFlight >= DateTime.Now));
+            return View(db.FlightsInfo.Where(p=>p.DepDateF >= DateTime.Now));
         }
 
        
@@ -74,7 +74,7 @@ namespace TravelAgencyP.Controllers
         public ActionResult FindFlight()
         {
             
-            return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateFlight >= DateTime.Now));
+            return View("FindFlight", db.FlightsInfo.Where(p => p.DepDateF >= DateTime.Now));
         }
         [HttpPost]
         public ActionResult SearchFlight()
@@ -82,11 +82,11 @@ namespace TravelAgencyP.Controllers
             bool trip;
             int max = -1 , min = -1 , Travelers = -1;
             FlightsInfo info = new FlightsInfo();
-            IQueryable<FlightsInfo> temp = db.FlightsInfo.Where(p => p.DepDateFlight >= DateTime.Now);
+            IQueryable<FlightsInfo> temp = db.FlightsInfo.Where(p => p.DepDateF >= DateTime.Now);
             if (Request.Form["OLocation"] != "From")
-                info.OriginFlight = Request.Form["OLocation"];
+                info.OriginF = Request.Form["OLocation"];
             if (Request.Form["DLocation"] != "To")
-                info.DestinationFlight = Request.Form["DLocation"];
+                info.DestinationF = Request.Form["DLocation"];
             try
             {
                 Travelers = Convert.ToInt32(Request.Form["Travelers"]);
@@ -108,7 +108,7 @@ namespace TravelAgencyP.Controllers
             try
             {
 
-                info.DepDateFlight = Convert.ToDateTime(Request.Form["depdate"]);
+                info.DepDateF = Convert.ToDateTime(Request.Form["depdate"]);
             }
             catch (Exception error)
             { }
@@ -117,17 +117,17 @@ namespace TravelAgencyP.Controllers
                 temp = temp.Where(p => p.RoundTrip != "");
                 
             }
-            if (info.OriginFlight != null)
+            if (info.OriginF != null)
             {
-                temp = temp.Where(p => p.OriginFlight == info.OriginFlight);
+                temp = temp.Where(p => p.OriginF == info.OriginF);
             }
-            if (info.DestinationFlight != null)
+            if (info.DestinationF != null)
             {
-                temp = temp.Where(p => p.DestinationFlight == info.DestinationFlight);
+                temp = temp.Where(p => p.DestinationF== info.DestinationF);
             }
-            if (!info.DepDateFlight.Year.Equals(0001))
+            if (!info.DepDateF.Year.Equals(0001))
             {
-                temp = temp.Where(p => p.DepDateFlight == info.DepDateFlight);
+                temp = temp.Where(p => p.DepDateF == info.DepDateF);
             }
             if (min != -1)
             {
@@ -144,7 +144,7 @@ namespace TravelAgencyP.Controllers
             Session["searchdb"] = temp;
             return View("FindFlight", temp);
         }
-        //public ActionResult SortFlights(object obj)
+        //public   ActionResult SortFlights(object obj)
         //{
 
 
@@ -167,7 +167,7 @@ namespace TravelAgencyP.Controllers
             db.FlightsInfo.Find(fi.FlightNumber).Seats = Convert.ToInt32(fi.Seats) - Convert.ToInt32(ti);
             db.SaveChanges();
             DbC.SaveChanges();
-            return View("HomePage",db.FlightsInfo);
+            return View("PaymentSuccessful", db.FlightsInfo);
         }
        
 
@@ -222,6 +222,7 @@ namespace TravelAgencyP.Controllers
                 }
                 Session["id"] = User.ID;
                 FlightsInfo fi = (FlightsInfo)Session["flight"];
+                ViewData["flightnum"] = fi.FlightNumber;
                 ViewData["price"] = fi.PriceTicket;
                 return View("Payment");
             }
@@ -230,6 +231,12 @@ namespace TravelAgencyP.Controllers
                 con.Close();
                 return View("LoginForPayment");
             }
+        }
+
+        public ActionResult PaymentSuccessful()
+        {
+           
+            return View();
         }
 
         protected override void Dispose(bool disposing)
